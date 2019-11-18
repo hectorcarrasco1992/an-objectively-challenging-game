@@ -6,6 +6,8 @@ let monster ={
     
 }
 
+
+
 let boss = {
     name:'Bowser',
     hitPoints:150,
