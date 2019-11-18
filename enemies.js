@@ -7,6 +7,9 @@ let monster ={
 }
 
 let boss = {
-    name:
+    name:'Bowser',
+    hitPoints:150,
+    attackMin:8,
+    attackMax:18,
 }
 console.log(monster)
