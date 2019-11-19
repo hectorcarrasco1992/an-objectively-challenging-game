@@ -4,9 +4,16 @@ function getAttackDamage(min, max) {
 
 let currentMonster = monster;
 let currentPlayer = player
-// document.querySelector('#fight').addEventListener('click', getAttackDamage(monster.attackMin, monster.attackMax))
+document.querySelector('#fight').addEventListener('click', playerBattle())
 
 function playerBattle(){
   monster.hitPoints -=  getAttackDamage(player.attackMin, player.attackMax) 
+
+  while(monster.hitPoints > 0){
+      player.hitPoints -= getAttackDamage(monster.attackMin, attackMax)
+
+  } if(monster.hitPoints <= 0){
+      
+  }
 
 }
