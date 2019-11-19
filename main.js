@@ -17,18 +17,22 @@ function playerBattle(){
     currentMonster = monster;
     currentMonster.hitPoints = 30;
     monHealth.innerText = currentMonster.hitPoints;
+    monHealth.style.width = '60px';
     currentPlayer.hitPoints = 100;
     plrHealth.innerText = currentPlayer.hitPoints;
+    plrHealth.style.width = '200px';
     fightButton.innerText = 'Fight'
   } else {
     let monDamage = getAttackDamage(player.attackMin, player.attackMax)
     currentMonster.hitPoints -=  monDamage; 
     monHealth.innerText = currentMonster.hitPoints;
+    monHealth.style.width = `${currentMonster.hitPoints * 2}px`;
     mDamageMessage.innerText = `You clobbered the monster with ${monDamage}`
     if (currentMonster.hitPoints > 0){
       let plrDamage = getAttackDamage(currentMonster.attackMin, currentMonster.attackMax);
       player.hitPoints -= plrDamage
       plrHealth.innerText = player.hitPoints;
+      plrHealth.style.width = `${currentPlayer.hitPoints * 2}px`;
       pDamageMessage.innerText = `The monster clobbered you with ${plrDamage}`
       if (player.hitPoints <= 0){
         resultLine.innerText = 'You died! Game over...';
@@ -39,8 +43,10 @@ function playerBattle(){
       resultLine.innerText = 'You slayed the monster, but here comes the boss...'
       currentMonster = boss;
       monHealth.innerText = boss.hitPoints;
+      monHealth.style.width = `${currentMonster.hitPoints * 2}px`;
       player.hitPoints -= getAttackDamage(boss.attackMin, boss.attackMax);
       plrHealth.innerText = player.hitPoints;
+      plrHealth.style.width = `${currentPlayer.hitPoints * 2}px`;
       if (player.hitPoints <= 0){
         resultLine.innerText = 'You died! Game over...';
         fightButton.innerText = 'Start Over'
