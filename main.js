@@ -44,7 +44,7 @@ function playerBattle(){
       monHealth.style.width=boss.hitPoints
       player.hitPoints -= getAttackDamage(boss.attackMin, boss.attackMax);
       plrHealth.innerText = player.hitPoints;
-      plrHealth.style.width = player.hitPoints
+      plrHealth.style.width = player.hitPoi
       if (player.hitPoints <= 0){
         resultLine.innerText = 'You died! Game over...';
         fightButton.innerText = 'Start Over'
