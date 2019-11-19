@@ -26,23 +26,46 @@ img {
 
 #app{
    display: grid;
-   grid-template-columns: 2 1pr;
+   grid-template-columns: 2, 1pr;
    grid-template-rows: 4, 1pr;
    grid-template-areas: 
    'plh plh'
    'ply mon'
    'txt moh'
    'but but'
-
-   
    ;
 }
 #results{
     grid-area: txt;
+    background-color: #5A91F8;
+    font-size: 40px;
+    position: absolute;
+    margin: 32% 40% 20% 40%;
+    text-shadow: 2px 2px rgb(236, 177, 236);
+}
+
+#player-damage-taken{
+    background-color: #5A91F8;
+    font-size: 40px;
+    position: absolute;
+    margin-top: 12%;
+    text-shadow: 2px 2px crimson;
+}
+
+#monster-damage-taken{
+    background-color: #5A91F8;
+    font-size: 40px;
+    position: absolute;
+    margin-top: 14%;
+    margin-left: 61%;
+    text-shadow: 2px 2px crimson;
 }
 
 button{
     grid-area: but;
+    height: 25px;
+    font-size: 20px;
+    box-shadow: 3px 3px rgb(145, 233, 4);
 }
 
 body{

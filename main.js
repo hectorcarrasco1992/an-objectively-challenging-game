@@ -14,6 +14,7 @@ let monDeath = 0;
 
 function playerBattle(){
   if (fightButton.innerText === 'Start Over'){
+    monDeath = 0
     currentMonster = monster;
     currentMonster.hitPoints = 30;
     monHealth.innerText = currentMonster.hitPoints;
@@ -21,7 +22,10 @@ function playerBattle(){
     currentPlayer.hitPoints = 100;
     plrHealth.innerText = currentPlayer.hitPoints;
     plrHealth.style.width = '200px';
-    fightButton.innerText = 'Fight'
+    fightButton.innerText = 'Fight';
+    resultLine.innerText = 'Let the battle begin!';
+    mDamageMessage.innerText = '';
+    pDamageMessage.innerText = '';
   } else {
     let monDamage = getAttackDamage(player.attackMin, player.attackMax)
     currentMonster.hitPoints -=  monDamage; 
@@ -42,7 +46,7 @@ function playerBattle(){
       monDeath++
       resultLine.innerText = 'You slayed the monster, but here comes the boss...'
       currentMonster = boss;
-      monHealth.innerText = boss.hitPoints;
+      monHealth.innerText = currentMonster.hitPoints;
       monHealth.style.width = `${currentMonster.hitPoints * 2}px`;
       player.hitPoints -= getAttackDamage(boss.attackMin, boss.attackMax);
       plrHealth.innerText = player.hitPoints;
