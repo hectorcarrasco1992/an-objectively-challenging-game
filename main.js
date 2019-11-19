@@ -3,29 +3,53 @@ function getAttackDamage(min, max) {
 }
 
 let currentMonster = monster;
-let currentPlayer = player;
+const currentPlayer = player;
 const monHealth = document.querySelector('#monster-health');
 const plrHealth = document.querySelector('#player-health');
-const resutlLine = document.querySelector('#results');
-
+const resultLine = document.querySelector('#results');
+const pDamageMessage = document.querySelector('#player-damage-taken');
+const mDamageMessage = document.querySelector('#monster-damage-taken');
+const fightButton = document.querySelector('#fight');
 let monDeath = 0;
 
 function playerBattle(){
-  currentMonster.hitPoints -=  getAttackDamage(player.attackMin, player.attackMax); 
-  monHealth.innerText = currentMonster.hitPoints;
-  if (currentMonster.hitPoints > 0){
-    player.hitPoints -= getAttackDamage(currentMonster.attackMin, currentMonster.attackMax);
-    plrHealth.innerText = player.hitPoints;
-  } else if (currentMonster.hitPoints <= 0 && monDeath < 1){
-    monDeath++
-    resutlLine.innerText = 'You slayed the monster, but here comes the boss...'
-    currentMonster = boss;
-    monHealth.innerText = boss.hitPoints;
-    player.hitPoints -= getAttackDamage(boss.attackMin, boss.attackMax);
-    plrHealth.innerText = player.hitPoints;
-  } else if (currentMonster.hitPoints <= 0 && monDeath !== 0){
-    resutlLine.innerText = 'You slayed the boss! You win!'
-  }
+  if (fightButton.innerText === 'Start Over'){
+    currentMonster = monster;
+    currentMonster.hitPoints = 30;
+    monHealth.innerText = currentMonster.hitPoints;
+    currentPlayer.hitPoints = 100;
+    plrHealth.innerText = currentPlayer.hitPoints;
+    fightButton.innerText = 'Fight'
+  } else {
+    let monDamage = getAttackDamage(player.attackMin, player.attackMax)
+    currentMonster.hitPoints -=  monDamage; 
+    monHealth.innerText = currentMonster.hitPoints;
+    mDamageMessage.innerText = `You clobbered the monster with ${monDamage}`
+    if (currentMonster.hitPoints > 0){
+      let plrDamage = getAttackDamage(currentMonster.attackMin, currentMonster.attackMax);
+      player.hitPoints -= plrDamage
+      plrHealth.innerText = player.hitPoints;
+      pDamageMessage.innerText = `The monster clobbered you with ${plrDamage}`
+      if (player.hitPoints <= 0){
+        resultLine.innerText = 'You died! Game over...';
+        fightButton.innerText = 'Start Over'
+      }
+    } else if (currentMonster.hitPoints <= 0 && monDeath < 1){
+      monDeath++
+      resultLine.innerText = 'You slayed the monster, but here comes the boss...'
+      currentMonster = boss;
+      monHealth.innerText = boss.hitPoints;
+      player.hitPoints -= getAttackDamage(boss.attackMin, boss.attackMax);
+      plrHealth.innerText = player.hitPoints;
+      if (player.hitPoints <= 0){
+        resultLine.innerText = 'You died! Game over...';
+        fightButton.innerText = 'Start Over'
+      }
+    } else if (currentMonster.hitPoints <= 0 && monDeath !== 0){
+      resultLine.innerText = 'You slayed the boss! You win!';
+      fightButton.innerText = 'Start Over';
+    }
+  } 
 }
 
-document.querySelector('#fight').addEventListener('click', playerBattle)
+fightButton.addEventListener('click', playerBattle)
