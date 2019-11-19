@@ -2,12 +2,14 @@
     width: 200px;
     height: 20px;
     background-color: green;
+    grid-area: plh;
 }
 
 #monster-health {
     width: 60px;
     height: 20px;
     background-color: red;
+    grid-area: moh;
 }
 
 .health-bar {
@@ -19,8 +21,31 @@
 
 img {
     padding: 30px;
+    grid-area: ply;
 }
 
 #app{
-    background-color: brown;
+   display: grid;
+   grid-template-columns: 2 1pr;
+   grid-template-rows: 4, 1pr;
+   grid-template-areas: 
+   'plh plh'
+   'ply mon'
+   'txt moh'
+   'but but'
+
+   
+   ;
 }
+#results{
+    grid-area: txt;
+}
+
+button{
+    grid-area: but;
+}
+
+body{
+    background-image: url(https://st4.depositphotos.com/1950939/21933/v/450/depositphotos_219333198-stock-illustration-old-game-background-classic-arcade.jpg);
+}
+
